@@ -1,6 +1,6 @@
 Consensus or Cheap Talk? The Discursive Politics of South Africa's Just Energy Transition
 
-Replication code and partial data for Bez, Klug, Raederscheidt & Steckel (2026), published in Environmental Politics. The raw data cannot be published due to LexisNexis property and circulation rights.
+Replication code for Bez, Klug, Raederscheidt & Steckel (2026), published in Environmental Politics. The data cannot be published due to LexisNexis property and circulation rights.
 
 We analyse nearly 2,300 South African news articles (2008–2023) using text-as-data methods to map public debate around just transitions and examine whether the Just Transition Framework and Just Energy Transition Partnership shifted or reinforced existing actor positions.
 
