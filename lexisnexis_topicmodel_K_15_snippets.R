@@ -1,5 +1,5 @@
 #This is the script for the approach of using just the snippets around just transition for k15. Taken from lexisnexis_topicmodel_K_10_bis_17 
-# Create the csv with top-words based on frex + create csv with frex-scores for each word -> For lotti to continue in python 
+# Create the csv with top-words based on frex + create csv with frex-scores for each word 
 
 setwd("/Users/giacomoraederscheidt/Dropbox/Paper_Just_Transitions")
 
@@ -46,25 +46,23 @@ write.csv(topwords, file = "topwords_model15_snippets.csv", row.names = FALSE)
 # # Create dataframe to store topic data
 # result_df <- data.frame()
 # 
-# # Extract information from 'top_doc' and add it to the dataframe
+#
 # for (i in 1:15) {
 #   topic_name <- paste("Topic", i)
 #   topic_indices <- top_doc$index[[topic_name]]
 #   topic_articles <- top_doc$docs[[topic_name]]
 #   topic_ids <- top_doc$meta[[topic_name]]
 #   
-#   # Combine the extracted information into a dataframe
 #   topic_data <- data.frame(
 #     Topic = i,
 #     ID = topic_indices,
 #     Article = topic_articles
 #   )
 #   
-#   # Append the topic-specific dataframe to the result dataframe
 #   result_df <- rbind(result_df, topic_data)
 # }
 # 
-# # Save the result to a CSV file
+#
 # write.csv(result_df, file = "top_20_k_15_snippets.csv", row.names = FALSE)
 # 
 # # Find topics per document/article  
@@ -77,12 +75,11 @@ nrow(meta_df)
 missing_ids <- setdiff(meta_df$ID, dfm_stm$meta$ID)
 print(missing_ids)
 
-meta_df <- meta_df[meta_df$ID != 2099, ] # At a later point check why.. Had one more medatadata observation than articles 
-
+meta_df <- meta_df[meta_df$ID != 2099, ] 
 
 topic_by_article <- cbind(meta_df, top_topic_by_article, model_15$theta)
 # 
-# # Save topics per document to a CSV file
+# # Save topics per document 
 write.csv(topic_by_article[, !names(topic_by_article) %in% c("Source_File", "Graphic", "ArticleCount", "RelativeShare")], file = "topics_share_k_15_snippets.csv", row.names = FALSE)
 # 
 # # Prevalence of topics over time 
@@ -97,7 +94,6 @@ write.csv(topic_by_article[, !names(topic_by_article) %in% c("Source_File", "Gra
 # 
 # effect <- estimateEffect(formula = ~Date, stmobj = model15_prevalence, metadata = meta_df)
 # 
-# # Save effect table as CSV file
 # write.csv(as.data.frame(effect), file = "effect_table_K_15_date_snippets.csv", row.names = FALSE)
 
 # Normalize FREX scores between 0 and 1
@@ -185,7 +181,7 @@ extractTopics <- function(model15, topics = NULL, n = 200, frexweight = 0.5) {
 
 extractedTopics <- extractTopics(model_15)
 print(extractedTopics)
-# have to normalize frex score between 0 and 1. Question: normalize for each topic or on whole data?   
+# have to normalize frex score between 0 and 1. 
 normalize_frex <- function(frex_scores) {
   min_score <- min(frex_scores, na.rm = TRUE)
   max_score <- max(frex_scores, na.rm = TRUE)
@@ -203,5 +199,5 @@ extractedTopics$frex <- normalized_frex
 
 
 
-# Save FREX scores to a CSV file
+# Save FREX scores 
 write.csv(extractedTopics, file = "k15_snippets_frex.csv", row.names = FALSE)
